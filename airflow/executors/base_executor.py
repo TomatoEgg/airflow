@@ -174,6 +174,7 @@ class BaseExecutor(LoggingMixin):
             key, (command, _, _, simple_ti) = sorted_queue.pop(0)
             self.queued_tasks.pop(key)
             self.running.add(key)
+            simple_ti.render_templates()
             self.execute_async(key=key,
                                command=command,
                                queue=None,
